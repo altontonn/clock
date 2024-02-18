@@ -21,6 +21,19 @@ class App extends React.Component {
             <i className="fa fa-arrow-up fa-2x"></i>
           </button>
         </div>
+        <div className="session-control">
+          <div id="session-label">Session Length</div>
+          <button className="btn-level" id="session-decrement" value="-">
+            <i className="fa fa-arrow-down fa-2x"></i>
+          </button>
+          <div className="btn-level" id="session-length">
+            5
+          </div>
+          <button className="btn-level" id="session-increment" value="+">
+            <i className="fa fa-arrow-up fa-2x"></i>
+          </button>
+        </div>
+        <div className="timer"></div>
       </div>
     );
   }

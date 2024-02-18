@@ -22,7 +22,7 @@
   margin-bottom: 20px;
 }
 
-.length-control {
+.length-control, .session-control {
   display: inline-block;
   width: 250px;
 }
@@ -32,7 +32,7 @@
   width: 42px;
 }
 
-.length-control button {
+button {
   background: none;
   outline: none;
   border: none;
