@@ -6,21 +6,21 @@ class App extends React.Component {
     super(props);
     this.state = {
       break_length: 5,
-      session_length: 25
-    }
-    this.increment = this.increment.bind(this)
-    this.decrement = this.decrement.bind(this)
+      session_length: 25,
+    };
+    this.increment_break_length = this.increment_break_length.bind(this);
+    this.decrement_break_length = this.decrement_break_length.bind(this);
     // this.reset = this.reset.bind(this)
-}
-  increment() {
-    this.setState(state => ({
-      break_length: state.break_length + 1
-    }))
   }
-  decrement() {
-    this.setState(state => ({
-      break_length: state.break_length > 1 ? state.break_length - 1 : 1
-    }))
+  increment_break_length() {
+    this.setState((state) => ({
+      break_length: state.break_length + 1,
+    }));
+  }
+  decrement_break_length() {
+    this.setState((state) => ({
+      break_length: state.break_length > 1 ? state.break_length - 1 : 1,
+    }));
   }
   render() {
     return (
@@ -28,13 +28,23 @@ class App extends React.Component {
         <div className="main-title">25 + 5 clock</div>
         <div className="length-control">
           <div id="break-label">Break Length</div>
-          <button className="btn-level" id="break-decrement" onClick={this.decrement} value="-">
+          <button
+            className="btn-level"
+            id="break-decrement"
+            onClick={this.decrement_break_length}
+            value="-"
+          >
             <i className="fa fa-arrow-down fa-2x"></i>
           </button>
           <div className="btn-level" id="break-length">
             {this.state.break_length}
           </div>
-          <button className="btn-level" id="break-increment" onClick={this.increment} value="+">
+          <button
+            className="btn-level"
+            id="break-increment"
+            onClick={this.increment_break_length}
+            value="+"
+          >
             <i className="fa fa-arrow-up fa-2x"></i>
           </button>
         </div>
@@ -65,7 +75,11 @@ class App extends React.Component {
             <i className="fa fa-refresh fa-2x"></i>
           </button>
         </div>
-        <div className="author"> Designed and Coded by <br/>Newton Alumaa</div>
+        <div className="author">
+          {" "}
+          Designed and Coded by <br />
+          Newton Alumaa
+        </div>
       </div>
     );
   }
