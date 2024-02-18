@@ -1,0 +1,13 @@
+#app {
+  background: #1e555c;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}
+
+#root {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}

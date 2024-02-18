@@ -1,11 +1,16 @@
+import React from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render(){
+    return(
+      <>
+      <h1>G-lock</h1>
+      </>
+    )
+  }
 }
-
 export default App;
