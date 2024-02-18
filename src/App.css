@@ -12,7 +12,6 @@
   align-items: center;
 }
 
-
 .clock-block {
   display: block;
 }
@@ -22,7 +21,7 @@
   margin-bottom: 20px;
 }
 
-.length-control, .session-control {
+.length-control {
   display: inline-block;
   width: 250px;
 }
@@ -50,4 +49,28 @@ button {
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
+}
+
+.timer {
+  border: 7px solid #13353a;
+  margin: 20px auto 10px auto;
+  width: 290px;
+  height: 200px;
+  border-radius: 50px;
+  position: relative;
+}
+
+.timer-wrapper {
+  position: absolute;
+  width: 190px;
+  height: 110px;
+  left: 50%;
+  top: 45%;
+  margin-left: -95px;
+  margin-top: -57px;
+}
+
+#time-left {
+  font-family: digital;
+  font-size: 80px;
 }

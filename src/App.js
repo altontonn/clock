@@ -21,7 +21,7 @@ class App extends React.Component {
             <i className="fa fa-arrow-up fa-2x"></i>
           </button>
         </div>
-        <div className="session-control">
+        <div className="length-control">
           <div id="session-label">Session Length</div>
           <button className="btn-level" id="session-decrement" value="-">
             <i className="fa fa-arrow-down fa-2x"></i>
@@ -33,7 +33,12 @@ class App extends React.Component {
             <i className="fa fa-arrow-up fa-2x"></i>
           </button>
         </div>
-        <div className="timer"></div>
+        <div className="timer">
+          <div className="timer-wrapper">
+            <div id="timer-label">Session</div>
+            <div id="time-left">25:00</div>
+          </div>
+        </div>
       </div>
     );
   }
