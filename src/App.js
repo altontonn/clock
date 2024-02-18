@@ -12,7 +12,7 @@ class App extends React.Component {
     this.increment_session_length = this.increment_session_length.bind(this);
     this.decrement_break_length = this.decrement_break_length.bind(this);
     this.decrement_session_length = this.decrement_session_length.bind(this);
-    // this.reset = this.reset.bind(this)
+    this.reset = this.reset.bind(this)
   }
   increment_break_length() {
     this.setState((state) => ({
@@ -38,6 +38,12 @@ class App extends React.Component {
     const minutes = Math.floor(seconds/60);
     const remainingSeconds = seconds % 60;
     return `${minutes.toString().padStart(2, 0)}: ${remainingSeconds.toString().padStart(2, 0)}`
+  }
+  reset() {
+    this.setState({
+      break_length: 5,
+      session_length: 25 * 60,
+    })
   }
   render() {
     return (
@@ -88,14 +94,14 @@ class App extends React.Component {
             <i className="fa fa-play fa-2x"></i>
             <i className="fa fa-pause fa-2x"></i>
           </button>
-          <button id="reset">
+          <button id="reset" onClick={this.reset}>
             <i className="fa fa-refresh fa-2x"></i>
           </button>
         </div>
         <div className="author">
           {" "}
           Designed and Coded by <br />
-          Newton Alumaa
+          Newton Alumasa
         </div>
       </div>
     );
