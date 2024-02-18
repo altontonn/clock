@@ -74,3 +74,12 @@ button {
   font-family: digital;
   font-size: 80px;
 }
+
+.author {
+  text-align: center;
+  font-family: Share Tech Mono, sans;
+  margin-top: 15px;
+  font-size: 16px;
+  color: #00264d;
+  line-height: 26px;
+}

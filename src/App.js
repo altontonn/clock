@@ -39,6 +39,16 @@ class App extends React.Component {
             <div id="time-left">25:00</div>
           </div>
         </div>
+        <div className="timer-control">
+          <button id="start_stop">
+            <i className="fa fa-play fa-2x"></i>
+            <i className="fa fa-pause fa-2x"></i>
+          </button>
+          <button id="reset">
+            <i className="fa fa-refresh fa-2x"></i>
+          </button>
+        </div>
+        <div className="author"> Designed and Coded by <br/>Newton Alumaa</div>
       </div>
     );
   }
