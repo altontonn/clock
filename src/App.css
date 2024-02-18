@@ -1,8 +1,8 @@
 #app {
   background: #1e555c;
-    color: white;
-    font-size: 30px;
-    text-align: center;
+  color: white;
+  font-size: 30px;
+  text-align: center;
 }
 
 #root {
@@ -10,4 +10,44 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
+}
+
+
+.clock-block {
+  display: block;
+}
+
+.main-title {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.length-control {
+  display: inline-block;
+  width: 250px;
+}
+
+.btn-level {
+  display: inline-block;
+  width: 42px;
+}
+
+.length-control button {
+  background: none;
+  outline: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
 }
