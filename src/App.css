@@ -83,3 +83,11 @@ button {
   color: #00264d;
   line-height: 26px;
 }
+
+.session-label-red {
+  color: rgb(165, 13, 13) !important;
+}
+.break-label-red {
+  color: rgb(165, 13, 13) !important;
+}
+
