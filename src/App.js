@@ -19,16 +19,31 @@ class App extends React.Component {
     this.tick = this.tick.bind(this);
   }
   increment_break_length() {
-    this.setState((prevState) => ({
-      break_length: prevState.break_length + 60,
-      initial_break_length: prevState.initial_break_length + 60
-    }));
+    this.setState((prevState) => {
+      if (prevState.break_length < 3600) {
+        // If break_length is less than 60 seconds, increment it
+        return {
+          break_length: prevState.break_length + 60,
+          initial_break_length: prevState.initial_break_length + 60,
+        };
+      } else {
+        // If break_length is already 60 seconds, don't change it
+        return null;
+      }
+    });
   }
+
   increment_session_length() {
-    this.setState((prevState) => ({
-      session_length: prevState.session_length + 60, // increasing by 1 minute
-      initial_session_length: prevState.initial_session_length + 60
-    }));
+    this.setState((prevState) => {
+      if (prevState.session_length < 3600) {
+        return {
+          session_length: prevState.session_length + 60, // increasing by 1 minute
+          initial_session_length: prevState.initial_session_length + 60,
+        };
+      } else {
+        return null;
+      }
+    });
   }
   decrement_break_length() {
     this.setState((prevState) => ({
@@ -68,29 +83,28 @@ class App extends React.Component {
     });
   }
   componentDidMount() {
-    this.timerID = setInterval(() => this.tick(), 100);
+    this.timerID = setInterval(() => this.tick(), 1000);
   }
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
 
   tick() {
+    console.log("Tick");
     if (this.state.timeTicking) {
-      if (this.state.session_length > 0) {
-        this.setState((prevState) => ({
-          session_length: prevState.session_length - 1,
-        }));
-      } else if (this.state.break_length > 0) {
-        this.setState((prevState) => ({
-          break_length: prevState.break_length - 1,
-        }));
-      }else {
-        // Switch between session time and break time
-        this.setState(prevState => ({
-          session_length: prevState.initial_session_length,
-          break_length: prevState.initial_break_length
-        }));
-      }
+      this.setState((prevState) => {
+        if (prevState.session_length >= 0) {
+          return { session_length: prevState.session_length - 1 };
+        } else if (prevState.break_length > 0) {
+          return { break_length: prevState.break_length - 1 };
+        } else {
+          // Switch between session time and break time
+          return {
+            session_length: this.state.initial_session_length,
+            break_length: this.state.initial_break_length,
+          };
+        }
+      });
     }
   }
 
@@ -102,7 +116,7 @@ class App extends React.Component {
       <div className="clock-block">
         <div className="main-title">25 + 5 clock</div>
         <div className="length-control">
-          <div id="break-label">Break Length</div>
+          <div id="break-label">Break Length.</div>
           <button
             className="btn-level"
             id="break-decrement"
@@ -151,31 +165,31 @@ class App extends React.Component {
             <div
               id="timer-label"
               className={`${
-                this.state.session_length > 0
+                this.state.session_length >= 0
                   ? redSession
                     ? "session-label-red"
                     : ""
                   : ""
               } ${
-                this.state.break_length > 0
+                this.state.break_length >= 0
                   ? redBreak
                     ? "session-label-red"
                     : ""
                   : ""
               }`}
             >
-              {this.state.session_length > 0 ? "Session" : "Break"}
+              {this.state.session_length >= 0 ? "Session" : "Break"}
             </div>
             <div
               id="time-left"
               className={`${
-                this.state.session_length > 0
+                this.state.session_length >= 0
                   ? redSession || redBreak
                     ? "session-label-red"
                     : ""
                   : ""
               } ${
-                this.state.break_length > 0
+                this.state.break_length >= 0
                   ? redBreak
                     ? "session-label-red"
                     : ""
@@ -183,7 +197,7 @@ class App extends React.Component {
               }`}
             >
               {this.formatTime(
-                this.state.session_length > 0
+                this.state.session_length >= 0
                   ? this.state.session_length
                   : this.state.break_length
               )}
