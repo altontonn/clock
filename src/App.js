@@ -236,6 +236,7 @@ class App extends React.Component {
           Designed and Coded by <br />
           Newton Alumasa
         </div>
+        <audio id="beep" preload="auto" src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/BeepSound.wav"></audio>
       </div>
     );
   }
