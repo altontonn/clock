@@ -68,29 +68,40 @@ class App extends React.Component {
   formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
-    return `${minutes.toString().padStart(2, 0)}:${remainingSeconds
+    return `${minutes.toString().padStart(2, "0")}:${remainingSeconds
       .toString()
-      .padStart(2, 0)}`;
+      .padStart(2, "0")}`;
   }
   reset() {
     clearInterval(this.timerID);
     this.setState({
+      timeTicking: false,
       break_length: 5 * 60,
       initial_break_length: 5 * 60,
       session_length: 25 * 60,
       initial_session_length: 25 * 60,
-      timeTicking: false,
     });
   }
-  componentDidMount() {
+
+  startTimer() {
     this.timerID = setInterval(() => this.tick(), 1000);
   }
-  componentWillUnmount() {
+
+  stopTimer() {
     clearInterval(this.timerID);
   }
 
+  componentDidUpdate(propState, prevState) {
+    if (prevState.timeTicking !== this.state.timeTicking) {
+      if (this.state.timeTicking) {
+        this.startTimer();
+      } else {
+        this.stopTimer()
+      }
+    }
+  }
+
   tick() {
-    console.log("Tick");
     if (this.state.timeTicking) {
       this.setState((prevState) => {
         if (prevState.session_length >= 0) {
@@ -98,7 +109,6 @@ class App extends React.Component {
         } else if (prevState.break_length > 0) {
           return { break_length: prevState.break_length - 1 };
         } else {
-          // Switch between session time and break time
           return {
             session_length: this.state.initial_session_length,
             break_length: this.state.initial_break_length,
@@ -126,7 +136,7 @@ class App extends React.Component {
             <i className="fa fa-arrow-down fa-2x"></i>
           </button>
           <div className="btn-level" id="break-length">
-            {Math.floor(this.state.initial_break_length / 60)}{" "}
+            {Math.floor(this.state.initial_break_length / 60)}
           </div>
           <button
             className="btn-level"
@@ -148,7 +158,7 @@ class App extends React.Component {
             <i className="fa fa-arrow-down fa-2x"></i>
           </button>
           <div className="btn-level" id="session-length">
-            {Math.floor(this.state.initial_session_length / 60)}{" "}
+            {Math.floor(this.state.initial_session_length / 60)}
             {/*convert seconds to minutes*/}
           </div>
           <button
@@ -205,7 +215,7 @@ class App extends React.Component {
           </div>
         </div>
         <div className="timer-control">
-          <button
+        <button
             id="start_stop"
             onClick={() => this.setState({ timeTicking: true })}
           >
