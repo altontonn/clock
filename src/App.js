@@ -17,6 +17,8 @@ class App extends React.Component {
     this.decrement_session_length = this.decrement_session_length.bind(this);
     this.reset = this.reset.bind(this);
     this.tick = this.tick.bind(this);
+    this.handleStart = this.handleStart.bind(this);
+    // this.handleStop = this.handleStop.bind(this);
   }
   increment_break_length() {
     this.setState((prevState) => {
@@ -65,13 +67,24 @@ class App extends React.Component {
           : 60,
     }));
   }
+
+  handleStart() {
+    this.setState((prevState) => ({
+      timeTicking: !prevState.timeTicking,
+    }));
+  }
+
   formatTime(seconds) {
+    if (seconds < 0) {
+      return "00:00";
+    }
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
     return `${minutes.toString().padStart(2, "0")}:${remainingSeconds
       .toString()
       .padStart(2, "0")}`;
   }
+
   reset() {
     clearInterval(this.timerID);
     this.setState({
@@ -81,6 +94,19 @@ class App extends React.Component {
       session_length: 25 * 60,
       initial_session_length: 25 * 60,
     });
+    const beepSound = document.getElementById("beep");
+    beepSound.pause();
+    beepSound.currentTime = 0;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.timeTicking !== this.state.timeTicking) {
+      if (this.state.timeTicking) {
+        this.startTimer();
+      } else {
+        this.stopTimer();
+      }
+    }
   }
 
   startTimer() {
@@ -91,22 +117,18 @@ class App extends React.Component {
     clearInterval(this.timerID);
   }
 
-  componentDidUpdate(propState, prevState) {
-    if (prevState.timeTicking !== this.state.timeTicking) {
-      if (this.state.timeTicking) {
-        this.startTimer();
-      } else {
-        this.stopTimer()
-      }
-    }
-  }
-
   tick() {
     if (this.state.timeTicking) {
       this.setState((prevState) => {
         if (prevState.session_length >= 0) {
+          if (prevState.session_length === 0) {
+            document.getElementById("beep").play();
+          }
           return { session_length: prevState.session_length - 1 };
-        } else if (prevState.break_length > 0) {
+        } else if (prevState.break_length >= 0) {
+          if (prevState.break_length === 0) {
+            document.getElementById("beep").play();
+          }
           return { break_length: prevState.break_length - 1 };
         } else {
           return {
@@ -126,7 +148,7 @@ class App extends React.Component {
       <div className="clock-block">
         <div className="main-title">25 + 5 clock</div>
         <div className="length-control">
-          <div id="break-label">Break Length.</div>
+          <div id="break-label">Break Length</div>
           <button
             className="btn-level"
             id="break-decrement"
@@ -215,17 +237,12 @@ class App extends React.Component {
           </div>
         </div>
         <div className="timer-control">
-        <button
-            id="start_stop"
-            onClick={() => this.setState({ timeTicking: true })}
-          >
-            <i className="fa fa-play fa-2x"></i>
-          </button>
-          <button
-            id="start_stop"
-            onClick={() => this.setState({ timeTicking: false })}
-          >
-            <i className="fa fa-pause fa-2x"></i>
+          <button id="start_stop" onClick={this.handleStart}>
+            <i
+              className={`fa fa-${
+                this.state.timeTicking ? "pause" : "play"
+              } fa-2x`}
+            ></i>
           </button>
           <button id="reset" onClick={this.reset}>
             <i className="fa fa-refresh fa-2x"></i>
@@ -236,7 +253,11 @@ class App extends React.Component {
           Designed and Coded by <br />
           Newton Alumasa
         </div>
-        <audio id="beep" preload="auto" src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/BeepSound.wav"></audio>
+        <audio
+          id="beep"
+          preload="auto"
+          src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/BeepSound.wav"
+        ></audio>
       </div>
     );
   }
