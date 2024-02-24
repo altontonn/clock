@@ -54,8 +54,6 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> Add a link to your deployed project.
-
 - [Live Demo Link](https://google.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -64,21 +62,33 @@
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-> Describe how a new developer could make use of your project.
-
 To get a local copy up and running, follow these steps.
 
 ### Prerequisites
 
-In order to run this project you need:
+  1. Before you go ahead with this project, please make sure you have:
+    - Basic understanding of HTML and CSS.
+    - JavaScript fundamentals (object, array, conditionals, etc).
+    - Familiarity with JavaScript ES6 features (class syntax, arrow functions, object destructuring etc).
 
-<!--
-Example command:
+  2. [Node and npm](https://nodejs.org/en/download/) are installed. Here are the versions I'll be using while making this tutorial:
 
-```sh
- gem install rails
-```
- -->
+    ```shell
+    $ node --version
+    v16.13.2
+    $ npm --version
+    8.1.2
+    $ yarn --version
+    1.22
+    ```
+    > Installing npm adds two commands to the system—`npm` and `npx`—both of which I'll be using while making this tutorial.
+
+  3. [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) is installed. Here's the version I'll be using while making this tutorial:
+
+    ```shell
+    $ git --version
+    git version 2.29.1.windows.1
+    ```
 
 ### Setup
 
