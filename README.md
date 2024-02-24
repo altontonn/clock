@@ -103,14 +103,11 @@ Clone this repository to your desired folder:
 
 Install this project with:
 
-<!--
-Example command:
-
 ```sh
-  cd my-project
-  gem install
+  cd clock
+  npm install
+  yarn install
 ```
---->
 
 ### Usage
 
