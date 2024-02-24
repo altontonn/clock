@@ -156,8 +156,6 @@ I would like to thank freecodecamp for their full support and guidance.
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](./LICENSE) licensed.
-
-_NOTE: we recommend using the [MIT license](https://choosealicense.com/licenses/mit/)
+This project is [MIT](https://github.com/altontonn/clock/blob/dev/LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
