@@ -1,0 +1,93 @@
+#app {
+  background: #1e555c;
+  color: white;
+  font-size: 30px;
+  text-align: center;
+}
+
+#root {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.clock-block {
+  display: block;
+}
+
+.main-title {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.length-control {
+  display: inline-block;
+  width: 250px;
+}
+
+.btn-level {
+  display: inline-block;
+  width: 42px;
+}
+
+button {
+  background: none;
+  outline: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.timer {
+  border: 7px solid #13353a;
+  margin: 20px auto 10px auto;
+  width: 290px;
+  height: 200px;
+  border-radius: 50px;
+  position: relative;
+}
+
+.timer-wrapper {
+  position: absolute;
+  width: 190px;
+  height: 110px;
+  left: 50%;
+  top: 45%;
+  margin-left: -95px;
+  margin-top: -57px;
+}
+
+#time-left {
+  font-family: digital;
+  font-size: 60px;
+}
+
+.author {
+  text-align: center;
+  font-family: Share Tech Mono, sans;
+  margin-top: 15px;
+  font-size: 16px;
+  color: #00264d;
+  line-height: 26px;
+}
+
+.session-label-red {
+  color: rgb(165, 13, 13) !important;
+}
+.break-label-red {
+  color: rgb(165, 13, 13) !important;
+}
+
